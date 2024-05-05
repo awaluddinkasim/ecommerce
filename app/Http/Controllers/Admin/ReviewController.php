@@ -11,7 +11,7 @@ class ReviewController extends Controller
     public function index()
     {
         $data = [
-            'products' => Product::has('order.review')->get()
+            'products' => Product::has('order.review')->with('order')->get()
         ];
 
         return view('pages.admin.reviews', $data);

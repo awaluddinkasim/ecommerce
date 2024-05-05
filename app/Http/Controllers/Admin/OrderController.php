@@ -11,7 +11,7 @@ class OrderController extends Controller
     public function index($status)
     {
         $data = [
-            'orders' => Order::where('status', $status)->get()
+            'orders' => Order::with('customer')->where('status', $status)->get()
         ];
 
         return view('pages.admin.orders', $data);
@@ -19,7 +19,7 @@ class OrderController extends Controller
 
     public function detail($status, $id)
     {
-        $order = Order::where('status', $status)->where('id', $id)->first();
+        $order = Order::with('items')->where('status', $status)->where('id', $id)->first();
 
         if ($order) {
             return view('pages.admin.order_detail', compact('order'));

@@ -14,7 +14,9 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view('pages.user.cart');
+        return view('pages.user.cart', [
+            'cart' => Cart::with('items')->where('user_id', auth()->user()->id)->first()
+        ]);
     }
 
     public function store(Request $request)

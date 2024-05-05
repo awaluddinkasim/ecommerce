@@ -1,5 +1,5 @@
 @extends('layouts.horizontal')
 
 @section('content')
-    @livewire('cart', ['cart' => auth()->user()->cart])
+    @livewire('cart', ['cart' => $cart])
 @endsection
